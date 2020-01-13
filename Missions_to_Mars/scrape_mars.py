@@ -101,9 +101,6 @@ def scrape ():
     # convert list of dictionairies to a dataframe
     facts_df = pd.DataFrame(mars_facts)
 
-    # checking it out
-    # facts_df.head()
-
     # create the html string for the table of facts, adding the bootstrap table classes
     facts_table = facts_df.to_html(classes='table table-striped')
 

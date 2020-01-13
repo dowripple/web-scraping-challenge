@@ -14,7 +14,7 @@ mongo = PyMongo(app)
 def index():
     
     # get the 1 row of mars data from the db, should be freshly scraped
-    mars_stuff = mongo.db.mars_data.find_one()
+    mars_stuff = mongo.db.mars_info.find_one()
 
     return render_template("index.html", martian_data = mars_stuff)
 
@@ -25,7 +25,7 @@ def scrape():
     latest_mars_data = scrape_mars.scrape()
 
     # insert one row into database
-    mongo.db.mars_data.update({}, latest_mars_data, upsert = True)
+    mongo.db.mars_info.update({}, latest_mars_data, upsert = True)
 
     # redirect to home page
     return redirect('/')    
