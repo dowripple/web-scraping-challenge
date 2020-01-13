@@ -23,24 +23,7 @@
             <div class="col-md-12">
                 <h2>Featured Image</h2>
                 <h3>Title: {{ martian_data.featured_image_title }}</h3>
-                <img src= "{{ martian_data.featured_image_url }}" alt="Latest Mars image" height = "auto" width = "auto">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <h2>Table of Facts</h2>
-                {{ martian_data.facts_table }}
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <h2>Martian Hemispheres</h2>
-                {% for hemisphere in martian_data.hemishperes %}
-                <div class="card">
-                    <h3 class="card-title">{{ hemisphere.title }}</h3>
-                    <img src = "{{ hemisphere.img_url }}" alt="one of the hemispheres">
-                </div>
-                {% endfor %}
+                <img src= "{{ martian_data.featured_image_url }}" alt="Latest Mars image">
             </div>
         </div>
     </div>

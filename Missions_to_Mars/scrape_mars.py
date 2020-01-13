@@ -4,7 +4,6 @@ from bs4 import BeautifulSoup as bs
 import requests
 from splinter import Browser
 import pymongo
-from flask import Flask, jsonify, render_template, redirect
 
 # function to scrape all the sites and return everything in 1 dictionairy
 def scrape ():
@@ -203,26 +202,3 @@ def scrape ():
     browser.quit()
 
     return mars_updates
-
-# setup the flask
-app = Flask(__name__)
-
-# the index page
-@app.route("/")
-def index():
-    
-    return render_template("index.html")
-
-
-if __name__ == '__main__':
-    # setup Mongo connection
-    conn = 'mongodb://localhost:27017'
-    client = pymongo.MongoClient(conn)
-
-    # define a db and a collection
-    db = client.mars_db
-    collection = db.mars_data
-
-    # insert the mars data disctionariy into the collection
-    collection.insert_one(scrape())
-    
