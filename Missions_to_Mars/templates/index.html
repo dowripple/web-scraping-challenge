@@ -26,6 +26,17 @@
                 <img src= "{{ martian_data.featured_image_url }}" alt="Latest Mars image">
             </div>
         </div>
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Hemispheres</h2>
+                {% for hemisphere in martian_data.hemispheres %}
+                <div id="card">
+                    <h3>{{ hemisphere.title }}</h3>
+                    <img src='{{ hemisphere.img_url }}' height='auto' width='auto'>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
     </div>
 </body>
 </html>

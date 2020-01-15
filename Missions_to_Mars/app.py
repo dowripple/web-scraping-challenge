@@ -6,15 +6,17 @@ import scrape_mars
 app = Flask(__name__)
 
 # establish pymongo connection
-app.config['Mongo_URI'] = "mongodb://localhost:27017/mars_data"
+app.config['MONGO_URI'] = "mongodb://localhost:27017/mars_data"
 mongo = PyMongo(app)
+
+data = mongo.db.data
 
 # the index page
 @app.route("/")
 def index():
     
     # get the 1 row of mars data from the db, should be freshly scraped
-    mars_stuff = mongo.db.mars_info.find_one()
+    mars_stuff = data.mars_info.find_one()
 
     return render_template("index.html", martian_data = mars_stuff)
 
@@ -25,7 +27,7 @@ def scrape():
     latest_mars_data = scrape_mars.scrape()
 
     # insert one row into database
-    mongo.db.mars_info.update({}, latest_mars_data, upsert = True)
+    data.mars_info.update({}, latest_mars_data, upsert = True)
 
     # redirect to home page
     return redirect('/')    
